@@ -1,0 +1,31 @@
+{
+  "name": "is3-website",
+  "version": "1.0.0",
+  "description": "Frontend website for the Intelligent System Simulation Service",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LVATactic/IS3-Website.git"
+  },
+  "author": "Stephen Cioffi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LVATactic/IS3-Website/issues"
+  },
+  "homepage": "http://is3.krutziscool.com",
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.3.2",
+    "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

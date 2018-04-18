@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TacSim - Try it out!</title>
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var url = "http://ares4.stephencioffi.com:9000/tacsim";
+            // var files;
+
+            $(document).ready(function() {
+                $("#fileForm").submit(function(event){
+                    event.preventDefault();
+                    $("#step1").slideUp();
+
+                    var files = $("#file").prop("files");
+
+                    // var formData = $(this).serialize();
+                    var data = new FormData();
+
+                    data.append("file", files[0]);
+
+                    $.ajax(url, {
+                        method: "post",
+                        processData: false,
+                        contentType: false,
+                        type: "multipart/form-data",
+                        data: data
+                    })
+                    .done(function(response) {
+                        $("#step2").slideDown();
+                        $("#data").html(JSON.stringify(response));
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>TacSim+</h1>
+            <hr />
+            <br />
+        <div id="step1">
+            <h2>Step 1 - Get some data:</h2>
+                <br />
+                <form method="POST" enctype="multipart/form-data" id="fileForm">
+                    <label>OPTIONAL - Custom Data:</label>
+                    <input type="file" name="file" id="file">
+                        <br /><br />
+                    <input type="submit" value="Run with TascSim Simulator">
+                </form>
+                <br />
+            <!-- <a href="javascript:void(0);" id="getData">Run TacSim with sample data!</a> -->
+                <br />
+                <hr />
+                <br />
+        </div>
+        <div id="step2" style="display:none;">
+            <h3>Step 2 - Your data will appear here: </h3>
+                <br />
+            <div id="data"></div>
+        </div>
+    </body>
+</html>
