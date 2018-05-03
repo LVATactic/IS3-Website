@@ -4,7 +4,7 @@ class Home extends React.Component{
 	render() {
 		return(
 			<div className="well">
-				<h1>Hello World!</h1>
+				<h1>IS3: Intelligent Self-Adaptive Simulation System</h1>
 			</div>
 		)
 	}

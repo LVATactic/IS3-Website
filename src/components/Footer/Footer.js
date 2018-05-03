@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
 	return (
-		<h5>Footer</h5>	
+		<h5>Copyright &copy; {new Date().getFullYear()} Intelligent Self-Adaptive Simulation System</h5>
 	);
 }
 
