@@ -25,15 +25,16 @@ class Simulator extends React.Component {
 		let url = "http://ares4.stephencioffi.com:9000/tacsim";
 
 		let data = new FormData();
-		data.append("file", event.target.file);
+		data.append("file", event.target.file.files[0]);;
 		
 		let headers = new Headers();
 		headers.append("method", "POST");
-		headers.append("Content-Type", "multipart/form-data");
+		headers.append("Content-Type", event.target.file.type);
 
 		fetch(url, {
 			method: "post",
-			contentType: "muiltipart/form-data"
+			processData: false,
+			body: data
 		})
 		.then((response) => response.json())
 		.then((response) => {
