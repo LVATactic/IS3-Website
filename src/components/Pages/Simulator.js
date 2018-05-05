@@ -44,6 +44,9 @@ class Simulator extends React.Component {
 			});
 		}).catch((error) => {
 			console.error(error);
+			this.setState({
+				step: 9
+			})
 		});
 
 	};
@@ -70,8 +73,17 @@ class Simulator extends React.Component {
 		return (
 			<div>
 				<h2>Results:</h2>
-				<p>To this data easily, we recommend a JSON viewer, such as <a href="https://jsoneditoronline.org/" target="_blank">this one</a></p>
+				<p>To view this data easily, we recommend a JSON viewer, such as <a href="https://jsoneditoronline.org/" target="_blank">this one</a></p>
 				<textarea className="form-control" rows="10" cols="100%" defaultValue={JSON.stringify(this.state.results)} readOnly />
+			</div>
+		);
+	}
+
+	step9(){
+		return (
+			<div>
+				<h2>IS3 Simulator not available.</h2>
+				<p>The IS3 simulator is currently unavailable. This could be due to high usage or server maintenance. Please try your simulation again later.</p>
 			</div>
 		);
 	}
