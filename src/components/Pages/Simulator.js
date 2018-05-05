@@ -96,6 +96,7 @@ class Simulator extends React.Component {
 						{this.state.step === 1 && this.step1()}
 						{this.state.step === 2 && this.step2()}
 						{this.state.step === 3 && this.step3()}
+						{this.state.step === 9 && this.step9()}
 					</div>
 				</div>
 			</div>
