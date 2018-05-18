@@ -25,7 +25,7 @@ class Simulator extends React.Component {
 		let url = "http://ares4.stephencioffi.com:9000/tacsim";
 
 		let data = new FormData();
-		data.append("file", event.target.file.files[0]);;
+		data.append("file", event.target.file.files[0]);
 		
 		let headers = new Headers();
 		headers.append("method", "POST");
@@ -58,7 +58,7 @@ class Simulator extends React.Component {
 					<label>OPTIONAL - Custom Data:</label>
 				<input type="file" name="file" id="file" />
 					<br /><br />
-				<input type="submit" value="Run with TascSim Simulator" />
+				<input type="submit" value="Run with IS3 Simulator" />
 			</form>
 		);
 	}
