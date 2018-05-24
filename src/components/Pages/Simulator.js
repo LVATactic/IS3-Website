@@ -22,7 +22,7 @@ class Simulator extends React.Component {
 			results: {}
 		});
 
-		let url = "http://ares4.stephencioffi.com:9000/tacsim";
+		let url = "https://api.is3tool.com:8443/tacsim";
 
 		let data = new FormData();
 		data.append("file", event.target.file.files[0]);
