@@ -302,8 +302,8 @@ class Datasets extends React.Component{
 								<div className="col-md-8">
 									<h2>Download Mirrors Latency Variations</h2>
 										<hr />
-									<p>This dataset features basic weather and delay information from a select group of airports around the United States.</p>
-									<p>Each entry contains a latency value. This latency value is the amount of time (in milliseconds) for request to the FAA's API server to complete.</p>
+									<p>This dataset contains the amount of time (in milliseconds) taken to download an identical 75MB file from different download mirrors, from around the World.</p>
+									<p>Each test involved real files downloading from a real thrid-party server. External conditions that could affect download times apply.</p>
 										<hr />
 									<h4>Directory:</h4>
 									<ul>
@@ -327,7 +327,7 @@ class Datasets extends React.Component{
 												<td>id</td>
 												<td>Integer</td>
 												<td>
-													<p><code>1-{data.airports.entries}</code></p>
+													<p><code>23-{data.mirrors.entries}</code></p>
 													<p>Unique ID assigned to entry.</p>
 												</td>
 											</tr>
@@ -401,7 +401,7 @@ class Datasets extends React.Component{
 										<dt>Servers Used:</dt>
 										<dd>3</dd>
 
-										<dt>Airports:</dt>
+										<dt>Servers:</dt>
 										<dd>
 											<span>ONTARIO<br /></span>
 											<span>MASS<br /></span>
