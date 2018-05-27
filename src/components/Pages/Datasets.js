@@ -314,7 +314,6 @@ class Datasets extends React.Component{
 										<hr />
 									<h3 id="tab-mirrors-docs">This dataset includes the following fields:</h3>
 
-									<p className="small"><em><strong className="text-warning">Important Note: </strong> Fields {this.bolded("temp")}, {this.bolded("forecast")}, {this.bolded("visibility")}, {this.bolded("wind")}, and {this.bolded("delay")} are served directly from the FAA Web Service and are subject to change at anytime.</em></p>
 									<table className="table table-bordered table-responsive table-striped">
 										<thead>
 											<tr>
