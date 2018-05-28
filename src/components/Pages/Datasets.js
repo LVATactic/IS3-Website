@@ -136,7 +136,7 @@ class Datasets extends React.Component{
 						<div className="tab-pane fade active in" id="welcome">
 							<h2>Welcome to IS3 Datasets!</h2>
 							
-							<p>IS3 is proud to publicly offer two real-world, live datasets. Each dataset contains a latency field which represents the actual time an action took to complete. This latency value can be used in self-adaptive system calculations that account for the uncertantity in tactical latency volitility.</p>
+							<p>IS3 is proud to publicly offer two real-world, live datasets. Each dataset contains a latency field which represents the actual time an action took to complete. This latency value can be used in self-adaptive system calculations that account for the uncertantity in tactic latency volitility.</p>
 							<p>Each dataset contains <strong>download links, documentation, and sources used</strong>.</p>
 							<h3>To get started, select a dataset from one of the tabs above.</h3>
 						</div>
@@ -283,11 +283,14 @@ class Datasets extends React.Component{
 
 										<dt>Airports:</dt>
 										<dd>{
+											data.airports.list_of_airports.sort().join(", ")
+											/*
 											data.airports.list_of_airports.sort().map((airport, index) => {
 												return (
-													<span key={index}>{airport}<br /></span>
+													<span key={index}>{airport}, </span>
 												);
-											})
+											});
+											*/
 										}</dd>
 									</dl>
 								</div>
@@ -404,7 +407,7 @@ class Datasets extends React.Component{
 										<dt>Servers:</dt>
 										<dd>
 											<span>ONTARIO<br /></span>
-											<span>MASS<br /></span>
+											<span>MASSACHUSSETTS<br /></span>
 											<span>GERMANY<br /></span>
 										</dd>
 									</dl>

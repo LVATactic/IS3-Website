@@ -54,7 +54,7 @@ class Simulator extends React.Component {
 	step1() {
 		return (
 			<form method="POST" encType="multipart/form-data" id="fileForm" onSubmit={this.handleSubmit}>
-				<h1>Welcome to the IS3 Tactic Latency Simulator!</h1>
+				<h1>Welcome to the IS3 Self-Adaptive System Simulator!</h1>
 					<label>OPTIONAL - Custom Data:</label>
 				<input type="file" name="file" id="file" />
 					<br /><br />
