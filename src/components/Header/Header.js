@@ -22,6 +22,9 @@ const Header = () => {
 							<li><Link to="/Simulator">IS3 Simulator</Link></li>
 							<li><Link to="/Datasets">Datasets</Link></li>
 						</ul>
+						<ul className="nav navbar-nav pull-right">
+							<li><a href="https://github.com/TVATactic/" target="_blank">Our GitHub</a></li>
+						</ul>
 					</div>
 				</div>
 			</nav>
