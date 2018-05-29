@@ -58,7 +58,7 @@ class Simulator extends React.Component {
 					<label>OPTIONAL - Custom Data:</label>
 				<input type="file" name="file" id="file" />
 					<br /><br />
-				<input type="submit" value="Run with IS3 Simulator" />
+				<input type="submit" value="Run with IS3 Simulator" class="btn btn-primary" />
 			</form>
 		);
 	}
