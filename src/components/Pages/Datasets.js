@@ -204,7 +204,7 @@ class Datasets extends React.Component{
 												<td>String</td>
 												<td>
 													<p>Current weather forecast at the airport. Some entries may contain multiple forecasts.</p>
-													<p><a href="LINK ME SOMEWHERE">List of current forecasts in the dataset.</a></p>
+													<p style={{"display": "none"}}><a href="LINK ME SOMEWHERE">List of current forecasts in the dataset.</a></p>
 												</td>
 											</tr>
 											<tr>

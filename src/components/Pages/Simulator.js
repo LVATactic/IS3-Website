@@ -100,7 +100,7 @@ class Simulator extends React.Component {
 				<p>To view this data easily, we recommend a JSON viewer, such as <a href="https://jsoneditoronline.org/" target="_blank">this one</a></p>
 				<textarea className="form-control" rows="10" cols="100%" defaultValue={JSON.stringify(this.state.results)} readOnly />
 					<br /><hr /><br />
-				<a class="btn btn-primary"><Glyphicon glyph="refresh" /> Reset Simulator</a>
+				<a class="btn btn-primary" href=""><Glyphicon glyph="refresh" /> Reset Simulator</a>
 			</div>
 		);
 	}
