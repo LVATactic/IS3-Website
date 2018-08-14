@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const Project = () => {
 	return (
@@ -11,7 +12,7 @@ const Project = () => {
 			<p><strong>Why is it important?</strong> It is already tough enough to create decision-making processes that are accurate and complete in a self-adaptive system, therefore reducing levels of uncertainty that surround these processes must be a top priority. Without measures to do this, the system can become highly unpredictable possibly leading to partial or full system failure. </p>
 			<p><strong>How do we do it?</strong> Through a process called machine learning. Allowing the system to store experienced latency times for a tactic within itself gives the system the ability to learn from past adaptations. This will not only will give the system more knowledge on how it behaves in certain environments, but also its developers. By being able to learn from past experiences, just like humans, the system can tailor its decision-making for future adaptations. This in turn will reduce uncertainty within the decision-making process, further improving the system and the decisions it makes.</p>
 				<br />
-			<p>Information on this project can be found on our <a href="https://github.com/TVAtactic/IS3" target="_blank">GitHub</a>.</p>
+			<p>Information on this project can be found on our <Link to="./DoubleBlind">GitHub</Link>.</p>
 		</div>
 	);
 };
