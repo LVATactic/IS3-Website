@@ -23,7 +23,7 @@ const Header = () => {
 							<li><Link to="/Datasets">Datasets</Link></li>
 						</ul>
 						<ul className="nav navbar-nav pull-right">
-							<li><a href="https://github.com/TVATactic/" target="_blank">Our GitHub</a></li>
+							<li><Link to="/DoubleBlind">Our GitHub</Link></li>
 						</ul>
 					</div>
 				</div>
