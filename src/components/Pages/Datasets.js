@@ -165,11 +165,11 @@ class Datasets extends React.Component{
 						<Modal.Title>Download {ds.title}</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-						<h4>This <em>may</em> take some time to complete.</h4>
+						<h4>This <em>may</em> take a few minutes to complete.</h4>
 						<p>The file will open in a new window/tab. Please allow some time for the file to generated on the server and then sent back to your browser.</p>
 
 						<a href={url} target="_blank" className="btn btn-success btn-bg">Click here to download your dataset</a>
-						{format === "csv" && <h6>Please allow extra time for the CSV conversion.</h6>}
+						{format === "csv" && <h5>Please allow a few minutes for the CSV conversion.</h5>}
 					</Modal.Body>
 				</Modal>
 			);
