@@ -15,7 +15,84 @@ class Datasets extends React.Component{
 			downloadModal: false,
 			downloadDataSet: false,
 			downloadFormat: false,
-			downloadStatus: false
+			downloadStatus: false,
+			ping_server_data: {
+				"Cook Childrens Medical Center": {
+					"url": "https://cookchildrens.org",
+					"description": "Cook's Children's Medical Center",
+					"location": "Fort Worth, Texas, United States"
+				},
+				"Tokyo": {
+					"url": "http://www.metro.tokyo.jp",
+					"description": "City of Tokyo",
+					"location": "Tokyo Japan"
+				},
+				"Tire Kingdom": {
+					"url": "http://www.tirekingdom.co.cr/",
+					"description": "Tire Kingdom - Tire Service",
+					"location": "San Jose, Costa Rica"
+				},
+				"Oslo University Hospital": {
+					"url": "https://oslo-universitetssykehus.no",
+					"description": "Oslo University Hospital - University of Oslo",
+					"location": "Oslo, Norway"
+				},
+				"Shari Vari": {
+					"url": "http://www.sharivari.it/",
+					"description": "Elegant & glamorous venue with an Italian fine dining restaurant, a bistro & a stylish nightclub.",
+					"location": "Rome, Italy"
+				},
+				"VNSoAaPF": {
+					"url": "http://www.enahp.edu.ve/",
+					"description": "Venezuela National School of Administration and Public Finance - University in Caracas, Venezuela",
+					"location": "Caracas, Venezuela"
+				},
+				"Utqiagvik": {
+					"url": "http://www.utqiagvik.us/",
+					"description": "City of Utqiagvik",
+					"location": "Utiqiagvik, Alaska, United States"
+				},
+				"Wichita Boathouse": {
+					"url": "http://wichitaboathouse.org/",
+					"description": "The Wichita Boathouse",
+					"location": "Wichita, Kansas, United States"
+				},
+				"Nuremberg Museums": {
+					"url": "https://museen.nuernberg.de",
+					"description": "The Museums of the City of Nuremberg",
+					"location": "Nuremberg, Germany"
+				},
+				"The Vatican": {
+					"url": "http://www.vaticanstate.va",
+					"description": "The Holy See",
+					"location": "Holy See, Vatican"
+				},
+				"LVDoT": {
+					"url": "http://www.lgt.aero",
+					"description": "Las Vegas Department of Transportation - North Las Vegas Airport",
+					"location": "Las Vegas, Nevada, United States"
+				},
+				"Minnesota State Fair": {
+					"url": "https://mnstatefair.org",
+					"description": "Minnesota State Fair",
+					"location": "St. Paul, Minnesota, United States"
+				},
+				"Argentina Government": {
+					"url": "http://argentina.gob.ar",
+					"description": "Argentinian Government Website",
+					"location": "Buenos Aires, Argentina"
+				},
+				"Spackenkill": {
+					"url": "https://www.spackenkillschools.org",
+					"description": "Spackenkill Union Free School District",
+					"location": "Poughkeepsie, New York, United States"
+				},
+				"Elon": {
+					"url": "https://www.elon.edu",
+					"description": "Elon University",
+					"location": "Elon, North Carolina, United States"
+				}
+			}
 		};
 
 		this.body = this.body.bind(this);
@@ -23,6 +100,7 @@ class Datasets extends React.Component{
 		this.downloadModal = this.downloadModal.bind(this);
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
+		this.pingServer = this.pingServer.bind(this);
 	}
 
 	componentDidMount = () => {
@@ -100,6 +178,34 @@ class Datasets extends React.Component{
 		}
 	};
 
+	pingServer = (key) => {
+		return (
+			<li><code>{key}</code>
+				<ul>
+					<li>{this.state.ping_server_data[key].description}</li>
+					<li><a href={this.state.ping_server_data[key].url} target="_blank">{this.state.ping_server_data[key].url}</a></li>
+					<li>{this.state.ping_server_data[key].location}</li>
+				</ul>
+			</li>
+		);
+	};
+
+	printServers = () => {
+		let string = [];
+		for (var key in this.state.ping_server_data) {
+			if (this.state.ping_server_data.hasOwnProperty(key)) {
+				string.push(
+					<span key={key}>
+						{key}
+						<br />
+					</span>
+				)
+			}
+		}
+
+		return string;
+	};
+
 	body = () => {
 		if(this.state.initialData === false){
 			return (
@@ -114,9 +220,11 @@ class Datasets extends React.Component{
 
 			let date_airports = moment.tz(data.airports.last_entry, "GMT").fromNow();
 			let date_mirrors = moment.tz(data.mirrors.last_entry, "GMT").fromNow();
+			let date_pings = moment.tz(data.pings.last_entry, "GMT").fromNow();
 
 			data.airports.last_entry = date_airports;
 			data.mirrors.last_entry = date_mirrors;
+			data.pings.last_entry = date_pings;
 
 			return (
 				<div>
@@ -474,11 +582,23 @@ class Datasets extends React.Component{
 											<td>server</td>
 											<td>String</td>
 											<td>
-												<p>Code for download server location.</p>
+												<p>Keys for server location.</p>
 												<ul>
-													<li><code>ONTARIO: </code> Ontario, Canada - North America</li>
-													<li><code>MASS: </code> Massachusetts, United States - North America</li>
-													<li><code>GERMANY: </code> Tübingen, Germany - Europe</li>
+													{this.pingServer("Cook Childrens Medical Center")}
+													{this.pingServer("Tokyo")}
+													{this.pingServer("Tire Kingdom")}
+													{this.pingServer("Oslo University Hospital")}
+													{this.pingServer("Shari Vari")}
+													{this.pingServer("VNSoAaPF")}
+													{this.pingServer("Utqiagvik")}
+													{this.pingServer("Wichita Boathouse")}
+													{this.pingServer("Nuremberg Museums")}
+													{this.pingServer("The Vatican")}
+													{this.pingServer("LVDoT")}
+													{this.pingServer("Minnesota State Fair")}
+													{this.pingServer("Argentina Government")}
+													{this.pingServer("Spackenkill")}
+													{this.pingServer("Elon")}
 												</ul>
 											</td>
 										</tr>
@@ -516,7 +636,7 @@ class Datasets extends React.Component{
 									<hr />
 
 									<h3 id="tab-pings-sources">Data Sources Used</h3>
-									<p>Each entry is the amount of time taken (in milliseconds) to download an identical 75MB file to the main server in New York City, New York - United States.</p>
+									<p>Each entry is the amount of time taken (in milliseconds) to send a packet of data to a remote server and back. Pinging was done from the main server in New York City, New York - United States.</p>
 								</div>
 								<div className="col-md-4">
 									<h2>Quick Info</h2>
@@ -529,19 +649,17 @@ class Datasets extends React.Component{
 										<dd>{numberWithCommas(data.pings.entries)}</dd>
 
 										<dt>Last Entry:</dt>
-										<dd>{data.mirrors.last_entry}</dd>
+										<dd>{data.pings.last_entry}</dd>
 
 										<dt>Update Frequency:</dt>
-										<dd>Every 1 Minutes</dd>
+										<dd>Every 1 Minute</dd>
 
 										<dt>Servers Used:</dt>
 										<dd>15</dd>
 
 										<dt>Servers:</dt>
 										<dd>
-											<span>ONTARIO<br /></span>
-											<span>MASSACHUSSETTS<br /></span>
-											<span>GERMANY<br /></span>
+											{this.printServers()}
 										</dd>
 									</dl>
 								</div>
