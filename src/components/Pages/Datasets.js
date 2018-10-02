@@ -4,7 +4,7 @@ import {Modal} from "react-bootstrap";
 
 const numberWithCommas = (x) => {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+};
 
 class Datasets extends React.Component{
 	constructor(props){
@@ -52,7 +52,7 @@ class Datasets extends React.Component{
 		this.setState({
 			downloadModal: false
 		});
-	}
+	};
 
 	openModal = (dataset, format) => {
 		console.log(dataset);
@@ -62,7 +62,7 @@ class Datasets extends React.Component{
 			downloadDataSet: dataset,
 			downloadFormat: format
 		});
-	}
+	};
 
 	downloadModal = () => {
 		const dataset = this.state.downloadDataSet;
@@ -72,7 +72,7 @@ class Datasets extends React.Component{
 			let ds = {
 				title: "",
 				abbrev: ""
-			}
+			};
 
 			if(dataset === "airports"){
 				ds.title = "FAA Airport Weather & Delay Information";
@@ -122,14 +122,13 @@ class Datasets extends React.Component{
 				<div>
 					<h1>IS3 Generated Datasets</h1>
 
-
 					<hr />
-
 
 					<ul className="nav nav-tabs">
 						<li className="active"><a href="#welcome" data-toggle="tab">IS3 Datasets</a></li>
-						<li><a href="#airports" data-toggle="tab">Airports</a></li>
+						{/*<li><a href="#airports" data-toggle="tab">Airports</a></li>*/}
 						<li><a href="#mirrors" data-toggle="tab">Download Mirrors</a></li>
+						<li><a href="#pings" data-toggle="tab">Pings</a></li>
 					</ul>
 
 					<div className="tab-content" id="datasets">
@@ -140,7 +139,7 @@ class Datasets extends React.Component{
 							<p>Each dataset contains <strong>download links, documentation, and sources used</strong>.</p>
 							<h3>To get started, select a dataset from one of the tabs above.</h3>
 						</div>
-						<div className="tab-pane fade" id="airports">
+						<div className="tab-pane fade" id="airports" style={{"display": "none"}}>
 							<div className="row">
 								<div className="col-md-8">
 									<h2>FAA Airport Weather &amp; Delay Information</h2>
@@ -365,6 +364,14 @@ class Datasets extends React.Component{
 													<p>Total time taken for to download the 75MB file.</p>
 												</td>
 											</tr>
+											<tr>
+												<td>error</td>
+												<td>Integer</td>
+												<td>
+													<p><strong>0</strong> if no error occurred.</p>
+													<p><strong>1</strong> if error occurred. Download failed.</p>
+												</td>
+											</tr>
 										</tbody>
 									</table>
 										<hr />
@@ -404,6 +411,132 @@ class Datasets extends React.Component{
 										<dt>Servers Used:</dt>
 										<dd>3</dd>
 
+										<dt>Server Locations:</dt>
+										<dd>
+											<span>ONTARIO<br /></span>
+											<span>MASSACHUSSETTS<br /></span>
+											<span>GERMANY<br /></span>
+										</dd>
+									</dl>
+								</div>
+							</div>
+						</div>
+
+
+
+
+						<div className="tab-pane fade in" id="pings">
+							<div className="row">
+								<div className="col-md-8">
+									<h2>Pings Latency Variations</h2>
+									<hr />
+									<p>This dataset contains the amount of time (in milliseconds) taken to ping servers from around the World.</p>
+									<p>Each test involved sending a packet of data to a domain that is hosted at a server or datacenter.</p>
+									<hr />
+									<h4>Directory:</h4>
+									<ul>
+										<li><a href="#tab-pings-docs">Format & Documentation</a></li>
+										<li><a href="#tab-pings-download">Download Dataset</a></li>
+										<li><a href="#tab-pings-sources">Sources Used</a></li>
+									</ul>
+									<hr />
+									<h3 id="tab-pings-docs">This dataset includes the following fields:</h3>
+
+									<table className="table table-bordered table-responsive table-striped">
+										<thead>
+										<tr>
+											<th>Field</th>
+											<th>Type</th>
+											<th>Format/Values</th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr>
+											<td>id</td>
+											<td>Integer</td>
+											<td>
+												<p><code>1-{data.pings.entries}</code></p>
+												<p>Unique ID assigned to entry.</p>
+											</td>
+										</tr>
+										<tr>
+											<td>timestamp</td>
+											<td>DateTime</td>
+											<td>
+												<span>Current Timestamp of data retrieval.</span>
+												<p><code>MM:DD:YY HH:mm:ss</code></p>
+												<p><strong>Example: </strong> <code>03-15-2018 15:30:00</code> is <strong>March 15<sup>th</sup>, 2018 at 15:30 (3:30 PM)</strong></p>
+												<em><strong>NOTE: </strong>All dates &amp; times are in GMT.</em>
+												<p><a href="https://docs.microsoft.com/en-us/scripting/javascript/date-and-time-strings-javascript" target="_blank">ISO Date Formats</a></p>
+											</td>
+										</tr>
+										<tr>
+											<td>server</td>
+											<td>String</td>
+											<td>
+												<p>Code for download server location.</p>
+												<ul>
+													<li><code>ONTARIO: </code> Ontario, Canada - North America</li>
+													<li><code>MASS: </code> Massachusetts, United States - North America</li>
+													<li><code>GERMANY: </code> Tübingen, Germany - Europe</li>
+												</ul>
+											</td>
+										</tr>
+										<tr>
+											<td>latency</td>
+											<td>Integer</td>
+											<td>
+												<p>Number of <code>milliseconds</code> the request took to complete.</p>
+												<p>Total time taken for to download the 75MB file.</p>
+											</td>
+										</tr>
+										<tr>
+											<td>error</td>
+											<td>Integer</td>
+											<td>
+												<p><strong>0</strong> if no error occurred.</p>
+												<p><strong>1</strong> if error occurred. Download failed.</p>
+											</td>
+										</tr>
+										</tbody>
+									</table>
+									<hr />
+									<h3 id="tab-pings-download">Download the latest dataset</h3>
+									<p>Full copies of the latest version of these datasets are currently available in the following formats: <strong>JSON, CSV</strong>.</p>
+
+									<div className="row">
+										<div className="col-md-6">
+											<a onClick={() => this.openModal("pings", "json")} className="btn btn-lg btn-block btn-primary" target="_blank">Download JSON format</a>
+										</div>
+										<div className="col-md-6">
+											<a onClick={() => this.openModal("pings", "csv")} className="btn btn-lg btn-block btn-primary" target="_blank">Download CSV format</a>
+										</div>
+									</div>
+
+									<hr />
+
+									<h3 id="tab-pings-sources">Data Sources Used</h3>
+									<p>Each entry is the amount of time taken (in milliseconds) to download an identical 75MB file to the main server in New York City, New York - United States.</p>
+								</div>
+								<div className="col-md-4">
+									<h2>Quick Info</h2>
+
+									<dl className="dl-horizontal">
+										<dt>Status:</dt>
+										<dd><span className="text-success">LIVE!</span></dd>
+
+										<dt>Number of Entries:</dt>
+										<dd>{numberWithCommas(data.pings.entries)}</dd>
+
+										<dt>Last Entry:</dt>
+										<dd>{data.mirrors.last_entry}</dd>
+
+										<dt>Update Frequency:</dt>
+										<dd>Every 1 Minutes</dd>
+
+										<dt>Servers Used:</dt>
+										<dd>15</dd>
+
 										<dt>Servers:</dt>
 										<dd>
 											<span>ONTARIO<br /></span>
@@ -414,6 +547,11 @@ class Datasets extends React.Component{
 								</div>
 							</div>
 						</div>
+
+
+
+
+
 					</div>
 				</div>
 			);
