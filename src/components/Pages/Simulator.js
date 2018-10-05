@@ -82,6 +82,7 @@ class Simulator extends React.Component {
 						<input type="file" name="file" id="file" style={{"display": "none"}} onChange={this.fileUpload} />
 					</label> <span>{this.state.fileLabel === "" ? "No file uploaded" : this.state.fileLabel}</span>
 					<br /><hr />
+				<p><strong style={{"color": "red"}}>Our IS3 Simulator is migrating servers. This process is due to start Friday, October 5th - 3:00am EDT and complete Friday, October 5th - 8:00pm EDT.</strong> If the service is unavailable during this time frame, please try again later.</p>
 				<input type="submit" value="Run with IS3 Simulator" className="btn btn-primary" />
 			</form>
 		);
