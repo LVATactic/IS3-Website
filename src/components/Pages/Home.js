@@ -13,6 +13,9 @@ class Home extends React.Component{
 					<li><strong><Link to="/Simulator">Self-Adaptive System Simulator</Link></strong></li>
 					<li><strong><Link to="/Datasets">Real-World Datasets</Link></strong></li>
 				</ul>
+					<hr />
+				<h2>Brief Video Demonstration:</h2>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/NjN8Q_pc39M?rel=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen />
 			</div>
 		)
 	}
