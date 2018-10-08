@@ -15,7 +15,14 @@ class Simulator extends React.Component {
 		this.step2 = this.step2.bind(this);
 		this.step3 = this.step3.bind(this);
 		this.fileUpload = this.fileUpload.bind(this);
-	}
+	};
+
+	resetSimulator = () => {
+		this.setState({
+			step: 1,
+			fileLabel: ""
+		});
+	};
 
 	handleSubmit = (event) => {
 		event.preventDefault();
@@ -94,13 +101,22 @@ class Simulator extends React.Component {
 	}
 
 	step3(){
+		let results_baseline = this.state.results.results.baseline;
+		let results_proposed = this.state.results.results.proposed;
+
+		results_baseline = results_baseline.filter((res) => res <= 5);
+		results_proposed = results_proposed.filter((res) => res <= 5);
+
 		return (
 			<div>
 				<h2>Results:</h2>
+				<p><strong>Baseline: </strong> {results_baseline.length}</p>
+				<p><strong>Proposed: </strong> {results_proposed.length}</p>
+
 				<p>To view this data easily, we recommend a JSON viewer, such as <a href="https://jsoneditoronline.org/" target="_blank">this one</a></p>
 				<textarea className="form-control" rows="10" cols="100%" defaultValue={JSON.stringify(this.state.results)} readOnly />
 					<br /><hr /><br />
-				<a class="btn btn-primary" href=""><Glyphicon glyph="refresh" /> Reset Simulator</a>
+				<a className="btn btn-primary" onClick={this.resetSimulator}><Glyphicon glyph="refresh" /> Reset Simulator</a>
 			</div>
 		);
 	}
@@ -112,7 +128,7 @@ class Simulator extends React.Component {
 			<div>
 				<h2>IS3 Simulator not available.</h2>
 				{error !== 500 && <p>The IS3 simulator is currently unavailable. This could be due to high usage or server maintenance. Please try your simulation again later.</p>}
-				{error === 500 && <p>There was an error while parsing your file. Make sure it matches the requirements on the sidebar.</p>}
+				{error <= 500 && <p>There was an error while parsing your file. Make sure it matches the requirements on the sidebar.</p>}
 			</div>
 		);
 	}
