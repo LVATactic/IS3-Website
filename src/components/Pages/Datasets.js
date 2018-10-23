@@ -236,7 +236,7 @@ class Datasets extends React.Component{
 						<li className="active"><a href="#welcome" data-toggle="tab">IS3 Datasets</a></li>
 						{/*<li><a href="#airports" data-toggle="tab">Airports</a></li>*/}
 						<li><a href="#mirrors" data-toggle="tab">Download Mirrors</a></li>
-						<li><a href="#pings" data-toggle="tab">Pings</a></li>
+						<li><a href="#pings" data-toggle="tab">Server Latencies</a></li>
 					</ul>
 
 					<div className="tab-content" id="datasets">
@@ -532,16 +532,16 @@ class Datasets extends React.Component{
 
 									<dl className="dl-horizontal">
 										<dt>Min:</dt>
-										<dd>{data.pings.stats.min}</dd>
+										<dd>{data.mirrors.stats.min}</dd>
 
 										<dt>Max:</dt>
-										<dd>{data.pings.stats.max}</dd>
+										<dd>{data.mirrors.stats.max}</dd>
 
 										<dt>Average:</dt>
-										<dd>{data.pings.stats.average}</dd>
+										<dd>{data.mirrors.stats.average}</dd>
 
 										<dt>Standard Deviation:</dt>
-										<dd>{data.pings.stats.stddev}</dd>
+										<dd>{data.mirrors.stats.stddev}</dd>
 									</dl>
 								</div>
 							</div>
@@ -553,7 +553,7 @@ class Datasets extends React.Component{
 						<div className="tab-pane fade in" id="pings">
 							<div className="row">
 								<div className="col-md-8">
-									<h2>Pings Latency Variations</h2>
+									<h2>Server Latency Variations</h2>
 									<hr />
 									<p>This dataset contains the amount of time (in milliseconds) taken to ping servers from around the World.</p>
 									<p>Each test involved sending a packet of data to a domain that is hosted at a server or datacenter.</p>
