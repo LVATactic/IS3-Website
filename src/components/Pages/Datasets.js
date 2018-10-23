@@ -526,6 +526,23 @@ class Datasets extends React.Component{
 											<span>GERMANY<br /></span>
 										</dd>
 									</dl>
+
+									<hr />
+									<h2>Statistics</h2>
+
+									<dl className="dl-horizontal">
+										<dt>Min:</dt>
+										<dd>{data.pings.stats.min}</dd>
+
+										<dt>Max:</dt>
+										<dd>{data.pings.stats.max}</dd>
+
+										<dt>Average:</dt>
+										<dd>{data.pings.stats.average}</dd>
+
+										<dt>Standard Deviation:</dt>
+										<dd>{data.pings.stats.stddev}</dd>
+									</dl>
 								</div>
 							</div>
 						</div>
@@ -661,6 +678,22 @@ class Datasets extends React.Component{
 										<dd>
 											{this.printServers()}
 										</dd>
+									</dl>
+										<hr />
+									<h2>Statistics</h2>
+
+									<dl className="dl-horizontal">
+										<dt>Min:</dt>
+										<dd>{data.pings.stats.min}</dd>
+
+										<dt>Max:</dt>
+										<dd>{data.pings.stats.max}</dd>
+
+										<dt>Average:</dt>
+										<dd>{data.pings.stats.average}</dd>
+
+										<dt>Standard Deviation:</dt>
+										<dd>{data.pings.stats.stddev}</dd>
 									</dl>
 								</div>
 							</div>
