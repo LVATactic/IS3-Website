@@ -218,9 +218,9 @@ class Datasets extends React.Component{
 		} else {
 			let data = this.state.initialData;
 
-			let date_airports = moment.tz(data.airports.last_entry, "GMT").fromNow();
-			let date_mirrors = moment.tz(data.mirrors.last_entry, "GMT").fromNow();
-			let date_pings = moment.tz(data.pings.last_entry, "GMT").fromNow();
+			let date_airports = moment(data.airports.last_entry, "MM-DD-YYYY HH:mm:ss").tz("GMT").fromNow();
+			let date_mirrors = moment(data.mirrors.last_entry, "MM-DD-YYYY HH:mm:ss").tz("GMT").fromNow();
+			let date_pings = moment(data.pings.last_entry, "MM-DD-YYYY HH:mm:ss").tz("GMT").fromNow();
 
 			data.airports.last_entry = date_airports;
 			data.mirrors.last_entry = date_mirrors;
@@ -530,19 +530,32 @@ class Datasets extends React.Component{
 									<hr />
 									<h2>Statistics</h2>
 
-									<dl className="dl-horizontal">
-										<dt>Min:</dt>
-										<dd>{data.mirrors.stats.min}</dd>
-
-										<dt>Max:</dt>
-										<dd>{data.mirrors.stats.max}</dd>
-
-										<dt>Average:</dt>
-										<dd>{data.mirrors.stats.average}</dd>
-
-										<dt>Standard Deviation:</dt>
-										<dd>{data.mirrors.stats.stddev}</dd>
-									</dl>
+									<table className="table">
+										<thead style={{"textAlign": "center"}}>
+										<tr>
+											<th>Stat</th>
+											<th>Value</th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr>
+											<td>Min</td>
+											<td>{data.mirrors.stats.min} seconds</td>
+										</tr>
+										<tr>
+											<td>Max</td>
+											<td>{data.mirrors.stats.max} seconds</td>
+										</tr>
+										<tr>
+											<td>Average</td>
+											<td>{Math.round(data.mirrors.stats.average)} seconds</td>
+										</tr>
+										<tr>
+											<td>Standard Deviation</td>
+											<td>{data.mirrors.stats.stddev.toFixed(3)} seconds</td>
+										</tr>
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
@@ -682,27 +695,35 @@ class Datasets extends React.Component{
 										<hr />
 									<h2>Statistics</h2>
 
-									<dl className="dl-horizontal">
-										<dt>Min:</dt>
-										<dd>{data.pings.stats.min}</dd>
-
-										<dt>Max:</dt>
-										<dd>{data.pings.stats.max}</dd>
-
-										<dt>Average:</dt>
-										<dd>{data.pings.stats.average}</dd>
-
-										<dt>Standard Deviation:</dt>
-										<dd>{data.pings.stats.stddev}</dd>
-									</dl>
+									<table className="table">
+										<thead style={{"textAlign": "center"}}>
+											<tr>
+												<th>Stat</th>
+												<th>Value</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Min</td>
+												<td>{data.pings.stats.min} seconds</td>
+											</tr>
+											<tr>
+												<td>Max</td>
+												<td>{data.pings.stats.max} seconds</td>
+											</tr>
+											<tr>
+												<td>Average</td>
+												<td>{Math.round(data.pings.stats.average)} seconds</td>
+											</tr>
+											<tr>
+												<td>Standard Deviation</td>
+												<td>{data.pings.stats.stddev.toFixed(3)} seconds</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
-
-
-
-
-
 					</div>
 				</div>
 			);
