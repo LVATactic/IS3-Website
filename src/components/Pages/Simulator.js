@@ -89,7 +89,7 @@ class Simulator extends React.Component {
 						<input type="file" name="file" id="file" style={{"display": "none"}} onChange={this.fileUpload} />
 					</label> <span>{this.state.fileLabel === "" ? "No file uploaded" : this.state.fileLabel}</span>
 					<br />
-					<em>Want a quick file to use? Try <a href="/DemoData.csv">this one</a></em>
+					<em>Want a quick file to use? Try <a href="http://ares4.stephencioffi.com/DemoData.csv">this one</a></em>
 					<hr />
 				<input type="submit" value="Run with IS3 Simulator" className="btn btn-primary" />
 			</form>
