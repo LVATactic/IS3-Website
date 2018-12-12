@@ -540,19 +540,19 @@ class Datasets extends React.Component{
 										<tbody>
 										<tr>
 											<td>Min</td>
-											<td>{data.mirrors.stats.min} seconds</td>
+											<td>{data.mirrors.stats.min} milliseconds</td>
 										</tr>
 										<tr>
 											<td>Max</td>
-											<td>{data.mirrors.stats.max} seconds</td>
+											<td>{data.mirrors.stats.max} milliseconds</td>
 										</tr>
 										<tr>
 											<td>Average</td>
-											<td>{Math.round(data.mirrors.stats.average)} seconds</td>
+											<td>{Math.round(data.mirrors.stats.average)} milliseconds</td>
 										</tr>
 										<tr>
 											<td>Standard Deviation</td>
-											<td>{data.mirrors.stats.stddev.toFixed(3)} seconds</td>
+											<td>{data.mirrors.stats.stddev.toFixed(3)} milliseconds</td>
 										</tr>
 										</tbody>
 									</table>
