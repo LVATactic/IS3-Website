@@ -40,8 +40,6 @@ class Simulator extends React.Component {
 			results: {}
 		});
 
-		let url = "http://192.168.1.3:9000/tacsim";
-
 		let data = new FormData();
 		data.append("file", event.target.file.files[0]);
 		data.append("threshold", event.target.threshold.value.toString());
@@ -50,7 +48,7 @@ class Simulator extends React.Component {
 		headers.append("method", "POST");
 		headers.append("Content-Type", event.target.file.type);
 
-		fetch(url, {
+		fetch(window.is3.tacsim, {
 			method: "post",
 			processData: false,
 			body: data
