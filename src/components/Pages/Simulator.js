@@ -32,10 +32,11 @@ class Simulator extends React.Component {
 			results: {}
 		});
 
-		let url = "https://api.is3tool.com:8443/tacsim";
+		let url = "http://localhost:9000/tacsim";
 
 		let data = new FormData();
 		data.append("file", event.target.file.files[0]);
+		data.append("threshold", event.target.threshold.value.toString());
 		
 		let headers = new Headers();
 		headers.append("method", "POST");
@@ -78,7 +79,7 @@ class Simulator extends React.Component {
 
 	step1() {
 		return (
-			<form method="POST" encType="multipart/form-data" id="fileForm" onSubmit={this.handleSubmit}>
+			<form method="POST" encType="multipart/form-data" id="fileForm" onSubmit={this.handleSubmit} className="form-horizontal">
 				<h1>IS3 Self-Adaptive System Simulator</h1>
 					<hr />
 					<p>Upload your own file to run against the simulator or just click the <em>Run with IS3 Simulator</em> to use a sample dataset.</p>
@@ -90,6 +91,11 @@ class Simulator extends React.Component {
 					</label> <span>{this.state.fileLabel === "" ? "No file uploaded" : this.state.fileLabel}</span>
 					<br />
 					<em>Want a quick file to use? Try <a href="http://ares4.stephencioffi.com/DemoData.csv">this one</a></em>
+					<br />
+					<div className="form-group">
+						<label htmlFor="threshold" className="col-lg-2 control-label">Threshold i</label>
+						<input type="number" name="threshold" id="threshold" className="form-control" />
+					</div>
 					<hr />
 				<input type="submit" value="Run with IS3 Simulator" className="btn btn-primary" />
 			</form>
