@@ -1,13 +1,19 @@
 import React from "react";
 import {Glyphicon} from "react-bootstrap";
 
+const initialForm = {
+	threshold: "20",
+	maxCycles: "100"
+};
+
 class Simulator extends React.Component {
 	constructor(props){
 		super(props);
 
 		this.state = {
 			step: 1,
-			fileLabel: ""
+			fileLabel: "",
+			form: initialForm
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,12 +21,14 @@ class Simulator extends React.Component {
 		this.step2 = this.step2.bind(this);
 		this.step3 = this.step3.bind(this);
 		this.fileUpload = this.fileUpload.bind(this);
+		this.formCheck = this.formCheck.bind(this);
 	};
 
 	resetSimulator = () => {
 		this.setState({
 			step: 1,
-			fileLabel: ""
+			fileLabel: "",
+			form: initialForm
 		});
 	};
 
@@ -32,7 +40,7 @@ class Simulator extends React.Component {
 			results: {}
 		});
 
-		let url = "http://localhost:9000/tacsim";
+		let url = "http://192.168.1.3:9000/tacsim";
 
 		let data = new FormData();
 		data.append("file", event.target.file.files[0]);
@@ -77,27 +85,117 @@ class Simulator extends React.Component {
 		});
 	};
 
+	formCheck = (id, event) => {
+		switch(id) {
+			case "maxCycles":
+				const maxCycles = parseFloat(event.target.value);
+
+				if(maxCycles > parseFloat(this.state.form.threshold)) {
+					this.setState({
+						form: {
+							...this.state.form,
+							maxCycles: maxCycles
+						}
+					});
+				} else {
+					alert("Max Cycles cannot be less than or equal to the Threshold.");
+				}
+				break;
+			case "threshold":
+				const threshold = parseFloat(event.target.value);
+				if (threshold < parseFloat(this.state.form.maxCycles)) {
+					this.setState({
+						form: {
+							...this.state.form,
+							threshold: threshold
+						}
+					});
+				} else {
+					alert("Threshold cannot be equal to or larger than Max Cycles.");
+				}
+				break;
+		}
+	};
+
 	step1() {
 		return (
 			<form method="POST" encType="multipart/form-data" id="fileForm" onSubmit={this.handleSubmit} className="form-horizontal">
 				<h1>IS3 Self-Adaptive System Simulator</h1>
 					<hr />
-					<p>Upload your own file to run against the simulator or just click the <em>Run with IS3 Simulator</em> to use a sample dataset.</p>
+					<fieldset>
+						<legend><h2>Customize your simulation</h2></legend>
+						<div className="row">
+							<div className="col-md-6">
+								<div className="row">
+									<div className="form-group">
+										<label htmlFor="maxCycles" className="col-lg-4 control-label">Max Cycles:</label>
+										<div className="col-lg-8">
+											<input
+												type="number"
+												name="maxCycles"
+												id="maxCycles"
+												className="form-control"
+												value={this.state.form.maxCycles}
+												onChange={(e) => this.formCheck("maxCycles", e)}
+											/>
+										</div>
+									</div>
+								</div>
+								<div className="row">
+									<div className="form-group">
+										<label htmlFor="threshold" className="col-lg-4 control-label">Threshold:</label>
+										<div className="col-lg-8">
+											<input
+												type="number"
+												name="threshold"
+												id="threshold"
+												className="form-control"
+												value={this.state.form.threshold}
+												onChange={(e) => this.formCheck("threshold", e)}
+											/>
+										</div>
+									</div>
+								</div>
+								<div className="row">
+									<div className="form-group">
+										<label htmlFor="algorithms" className="col-lg-4 control-label">Utility Algorithms:</label>
+										<div className="col-lg-8">
+											<select multiple className="form-control">
+												<option value="baseline" selected>Baseline</option>
+												<option value="proposed" selected>Proposed</option>
+												<option value="average">Average</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="col-md-6">
+								<p>Upload your own file to run against the simulator or just click the <em>Run with IS3 Simulator</em> to use a sample dataset.</p>
 
-					<p>Upload your own file using the button below:</p>
-					<label className="btn btn-default btn-sm btn-file">
-						Use your own file
-						<input type="file" name="file" id="file" style={{"display": "none"}} onChange={this.fileUpload} />
-					</label> <span>{this.state.fileLabel === "" ? "No file uploaded" : this.state.fileLabel}</span>
-					<br />
-					<em>Want a quick file to use? Try <a href="http://ares4.stephencioffi.com/DemoData.csv">this one</a></em>
-					<br />
-					<div className="form-group">
-						<label htmlFor="threshold" className="col-lg-2 control-label">Threshold i</label>
-						<input type="number" name="threshold" id="threshold" className="form-control" />
-					</div>
-					<hr />
-				<input type="submit" value="Run with IS3 Simulator" className="btn btn-primary" />
+								<p>Upload your own file using the button below:</p>
+									<hr />
+									<br />
+								<div className="row">
+									<div className="form-group">
+										<label htmlFor="file" className="col-lg-6 control-label">Custom File (Optional):</label>
+										<a className="btn btn-default btn-sm btn-file" style={{"width": "200px"}}>
+											Select file
+											<input type="file" name="file" id="file" style={{"display": "none"}} onChange={this.fileUpload} />
+										</a> <br /><span>{this.state.fileLabel === "" ? "No file uploaded" : this.state.fileLabel}</span>
+									</div>
+								</div>
+									<br />
+								<em>Want a quick file to use? Try <a href="http://ares4.stephencioffi.com/DemoData.csv">this one</a></em>
+									<br />
+							</div>
+						</div>
+					</fieldset>
+						<hr />
+				<div>
+					<input type="submit" value="Run with IS3 Simulator" className="btn btn-primary" />
+						&nbsp;&nbsp;
+					<a className="btn btn-link" onClick={this.resetSimulator}><Glyphicon glyph="refresh" /> Reset Simulator</a>
+				</div>
 			</form>
 		);
 	}
@@ -135,8 +233,8 @@ class Simulator extends React.Component {
 		return (
 			<div>
 				<h2>IS3 Simulator not available.</h2>
-				{error !== 500 && <p>The IS3 simulator is currently unavailable. This could be due to high usage or server maintenance. Please try your simulation again later.</p>}
 				{error <= 500 && <p>There was an error while parsing your file. Make sure it matches the requirements on the sidebar.</p>}
+				{error !== 500 && <p>The IS3 simulator is currently unavailable. This could be due to high usage or server maintenance. Please try your simulation again later.</p>}
 			</div>
 		);
 	}
