@@ -75,7 +75,6 @@ class Simulator extends React.Component {
 
 	fileUpload = (event) => {
 		var input = event.target,
-        numFiles = input.files ? input.files.length : 1,
 		label = input.value.replace(/\\/g, '/').replace(/.*\//, '');
 		
 		this.setState({
@@ -112,6 +111,8 @@ class Simulator extends React.Component {
 					alert("Threshold cannot be equal to or larger than Max Cycles.");
 				}
 				break;
+			default:
+				return;
 		}
 	};
 
@@ -159,9 +160,9 @@ class Simulator extends React.Component {
 										<label htmlFor="algorithms" className="col-lg-4 control-label">Utility Algorithms:</label>
 										<div className="col-lg-8">
 											<select multiple className="form-control">
-												<option value="baseline" selected>Baseline</option>
-												<option value="proposed" selected>Proposed</option>
-												<option value="average">Average</option>
+												<option value="baseline" defaultValue>Baseline</option>
+												<option value="proposed" defaultValue>Proposed</option>
+												<option value="average" disabled>Average</option>
 											</select>
 										</div>
 									</div>
@@ -176,16 +177,29 @@ class Simulator extends React.Component {
 								<div className="row">
 									<div className="form-group">
 										<label htmlFor="file" className="col-lg-6 control-label">Custom File (Optional):</label>
-										<a className="btn btn-default btn-sm btn-file" style={{"width": "200px"}}>
+										<div className="btn btn-default btn-sm btn-file" style={{"width": "200px"}}>
 											Select file
 											<input type="file" name="file" id="file" style={{"display": "none"}} onChange={this.fileUpload} />
-										</a> <br /><span>{this.state.fileLabel === "" ? "No file uploaded" : this.state.fileLabel}</span>
+										</div> <br /><span>{this.state.fileLabel === "" ? "No file uploaded" : this.state.fileLabel}</span>
 									</div>
 								</div>
 									<br />
-								<em>Want a quick file to use? Try <a href="http://ares4.stephencioffi.com/DemoData.csv">this one</a></em>
+								<em>Want a quick file to use? Try <a href="http://prometheus.stephencioffi.com/DemoData.csv">this one</a></em>
 									<br />
 							</div>
+						</div>
+						<div className="row">
+							<h2>Definitions:</h2>
+							<dl>
+								<dt>Max Cycles:</dt>
+								<dd>Number of MAPE-K cycles in a single instance. The more cycles, the higher the accuracy.</dd>
+
+								<dt>Threshold:</dt>
+								<dd>Maximum number of critical failures permitted to be considered a <strong>pass</strong>.</dd>
+
+								<dt>Utility Algorithms:</dt>
+								<dd>Select which utility equations you would like to run against.</dd>
+							</dl>
 						</div>
 					</fieldset>
 						<hr />
@@ -220,7 +234,7 @@ class Simulator extends React.Component {
 				<p>To view this data easily, we recommend a JSON viewer, such as <a href="https://jsoneditoronline.org/" target="_blank">this one</a></p>
 				<textarea className="form-control" rows="10" cols="100%" defaultValue={JSON.stringify(this.state.results)} readOnly />
 					<br /><hr /><br />
-				<a className="btn btn-primary" onClick={this.resetSimulator}><Glyphicon glyph="refresh" /> Reset Simulator</a>
+				<div className="btn btn-primary" onClick={this.resetSimulator}><Glyphicon glyph="refresh" /> Reset Simulator</div>
 			</div>
 		);
 	}

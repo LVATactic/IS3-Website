@@ -15,7 +15,7 @@ class Home extends React.Component{
 				</ul>
 					<hr />
 				<h2>Brief Video Demonstration:</h2>
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/NjN8Q_pc39M?rel=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen />
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/NjN8Q_pc39M?rel=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" title="IS3" allowFullScreen />
 			</div>
 		)
 	}
